@@ -111,20 +111,6 @@
   }
   .barra-oferta strong { text-decoration: underline; }
 
-  /* ---------- CTA fixo mobile ---------- */
-  .cta-flutuante {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-    background: rgba(251, 246, 236, .96);
-    box-shadow: 0 -4px 16px rgba(20, 53, 110, .15);
-    z-index: 50;
-    text-align: center;
-  }
-  .cta-flutuante .btn { width: 100%; max-width: 480px; }
-  body { padding-bottom: 88px; }
-  @media (min-width: 768px) { .cta-flutuante { display: none; } body { padding-bottom: 0; } }
-
   /* ---------- Hero ---------- */
   .hero {
     background: linear-gradient(160deg, var(--azul-escuro) 0%, var(--azul) 75%, var(--azul-fundo) 100%);
@@ -767,11 +753,6 @@
     </details>
   </div>
 </section>
-
-<!-- ============ CTA FIXO (MOBILE) ============ -->
-<div class="cta-flutuante">
-  <a class="btn" href="#oferta">Quero o material agora · a partir de R$ 9,90</a>
-</div>
 
 <!-- ============ DATA DA OFERTA (JS) ============
      A barra do topo mostra sempre a data de hoje (dd/mm/aaaa). Sem o JS, o
