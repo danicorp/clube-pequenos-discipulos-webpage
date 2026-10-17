@@ -3,37 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clube dos Pequenos Discípulos — Atividades Cristãs Prontas para Crianças</title>
+<title>Clube dos Pequenos Discípulos · Atividades Cristãs Prontas para Crianças</title>
 <meta name="description" content="Atividades cristãs prontas para suas crianças, com envio imediato após a compra. Versão básica a partir de R$ 9,90.">
 <!-- ============================================================
-     PÁGINA DE VENDAS — Clube dos Pequenos Discípulos
-     Design herdado dos criativos aprovados (03-criativos/imagens/):
-       - Azul royal #0051D5 (real nos criativos; briefing #1E5BC6)
-       - Amarelo-ouro #FFC107 / #FFD200
-       - Verde-água #29B6F6 · Verde #43A047 · Rosa #F06292 · Laranja #FB8C00
-       - Fundo creme #FBF6EC · Texto azul-marinho #14356E
-       - Estilo: 3D cartoon infantil vibrante, bordas arredondadas, sombras suaves
+     PÁGINA DE VENDAS · Clube dos Pequenos Discípulos
+     Layout no padrão da página de referência (seções centradas com
+     selo-pílula, cards brancos, oferta em fundo escuro, garantia com
+     selo circular e FAQ), com a PALETA DOS CRIATIVOS:
+        - Azul royal #0051D5 (real nos criativos; briefing #1E5BC6)
+        - Amarelo-ouro #FFC107 / #FFD200
+        - Verde-água #29B6F6 · Verde #43A047 · Rosa #F06292 · Laranja #FB8C00
+        - Fundo creme #FBF6EC · Texto azul-marinho #14356E
+        - Estilo: 3D cartoon infantil vibrante, bordas arredondadas, sombras suaves
 
-     ANTES DE PUBLICAR — substituir todos os [CONFIRMAR]:
-       1. [CONFIRMAR: URL_CHECKOUT_*]  → URLs reais do checkout, com UTMs
-       2. [CONFIRMAR: ID_PIXEL]        → ID do Meta Pixel (ou remover bloco)
-       3. Depoimentos: TEXTOS FICTÍCIOS de teste — substituir por depoimentos
-          reais com autorização antes de publicar (seção 8)
-       4. Logo aprovado (02-identidade-visual/) → trocar o SVG placeholder
+     ANTES DE PUBLICAR: substituir todos os [CONFIRMAR]:
+        1. [CONFIRMAR: URL_CHECKOUT_*]  → URLs reais do checkout, com UTMs
+        2. [CONFIRMAR: ID_PIXEL]        → ID do Meta Pixel (ou remover bloco)
+        3. Depoimentos: TEXTOS FICTÍCIOS de teste: substituir por depoimentos
+           reais com autorização antes de publicar (seção de depoimentos)
 
      REGRAS RESPEITADAS:
-       - Nenhuma menção ao formato do arquivo (produto digital com envio imediato)
-       - Sem atributos pessoais, sem garantia de resultado, sem escassez artificial
-       - Garantia de 7 dias conforme CDC Art. 49 (seção 10 + FAQ)
-============================================================== -->
+        - Nenhuma menção ao formato do arquivo (produto digital com envio imediato)
+        - Sem atributos pessoais, sem garantia de resultado e sem atributo inventado
+        - Barra do topo: a data é a de hoje, preenchida por JS (`#data-oferta`),
+          sem data fixa no HTML — mantenha a oferta realmente ativa no dia
+        - Garantia de 7 dias conforme CDC Art. 49 (seção de garantia + FAQ)
+     ============================================================= -->
 <style>
   :root {
     --azul: #0051D5;
     --azul-escuro: #14356E;
+    --azul-fundo: #0A3FA0;
+    --azul-claro: #EDF4FF;
     --amarelo: #FFC107;
     --amarelo-forte: #FFD200;
     --agua: #29B6F6;
     --verde: #43A047;
+    --verde-escuro: #2E7D32;
     --rosa: #F06292;
     --laranja: #FB8C00;
     --creme: #FBF6EC;
@@ -44,8 +50,6 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-  html { scroll-behavior: smooth; }
 
   body {
     font-family: var(--fonte);
@@ -60,15 +64,21 @@
 
   .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-  section { padding: 56px 0; }
+  section { padding: 60px 0; }
+
+  /* ---------- Título com grifo ---------- */
+
   section h2 {
     font-size: clamp(1.6rem, 4vw, 2.3rem);
     text-align: center;
     margin-bottom: 28px;
-    color: var(--azul);
+    color: var(--azul-escuro);
     line-height: 1.2;
   }
+  .grifo { background: var(--amarelo); color: var(--azul-escuro); padding: 0 8px; border-radius: 8px; }
+  .secao-escura h2 { color: var(--branco); }
 
+  /* ---------- Botões ---------- */
   .btn {
     display: inline-block;
     background: var(--verde);
@@ -80,15 +90,26 @@
     text-align: center;
     padding: 16px 36px;
     border-radius: 999px;
-    box-shadow: 0 6px 0 #2E7D32;
+    box-shadow: 0 6px 0 var(--verde-escuro);
     transition: transform .12s ease, box-shadow .12s ease;
     cursor: pointer;
     border: none;
   }
-  .btn:hover, .btn:focus-visible { transform: translateY(2px); box-shadow: 0 4px 0 #2E7D32; }
+  .btn:hover, .btn:focus-visible { transform: translateY(2px); box-shadow: 0 4px 0 var(--verde-escuro); }
   .btn-amarelo { background: var(--amarelo); color: var(--azul-escuro); box-shadow: 0 6px 0 #E0A800; }
   .btn-amarelo:hover, .btn-amarelo:focus-visible { box-shadow: 0 4px 0 #E0A800; }
   .btn-bloco { display: block; width: 100%; }
+
+  /* ---------- Barra do topo (data real obrigatória) ---------- */
+  .barra-oferta {
+    background: var(--laranja);
+    color: var(--branco);
+    text-align: center;
+    font-weight: 800;
+    font-size: .95rem;
+    padding: 10px 16px;
+  }
+  .barra-oferta strong { text-decoration: underline; }
 
   /* ---------- CTA fixo mobile ---------- */
   .cta-flutuante {
@@ -106,20 +127,10 @@
 
   /* ---------- Hero ---------- */
   .hero {
-    background: linear-gradient(160deg, var(--azul) 0%, #0A63F0 60%, var(--agua) 130%);
+    background: linear-gradient(160deg, var(--azul-escuro) 0%, var(--azul) 75%, var(--azul-fundo) 100%);
     color: var(--branco);
-    padding: 48px 0 64px;
+    padding: 44px 0 60px;
     text-align: center;
-  }
-  .hero .logo-marca {
-    display: block;
-    margin: 0 auto 20px;
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    border: 3px solid var(--branco);
-    box-shadow: 0 6px 16px rgba(0,0,0,.25);
-    object-fit: cover;
   }
   .hero h1 {
     font-size: clamp(1.9rem, 5.5vw, 3rem);
@@ -127,32 +138,22 @@
     margin-bottom: 14px;
     text-shadow: 0 3px 0 rgba(0,0,0,.18);
   }
+  .hero h1 .grifo { background: transparent; color: var(--amarelo-forte); padding: 0; }
   .hero .sub {
     font-size: clamp(1.05rem, 2.6vw, 1.3rem);
     font-weight: 600;
     max-width: 620px;
-    margin: 0 auto 26px;
+    margin: 0 auto 28px;
     opacity: .96;
-  }
-  .hero .selo-preco {
-    display: inline-block;
-    background: var(--amarelo);
-    color: var(--azul-escuro);
-    font-weight: 800;
-    font-size: 1.05rem;
-    padding: 8px 22px;
-    border-radius: 999px;
-    margin-bottom: 26px;
-    box-shadow: 0 4px 0 #E0A800;
   }
   .hero-banner {
     display: block;
     width: 100%;
-    max-width: 640px;
-    margin: 36px auto 0;
-    border-radius: 16px;
-    border: 4px solid var(--branco);
-    box-shadow: 0 14px 30px rgba(0,0,0,.3);
+    max-width: 700px;
+    margin: 0 auto 30px;
+    /* PNG com fundo transparente: sem moldura nem sombra de caixa — a
+       sombra acompanha o recorte (alpha), não o retângulo da imagem. */
+    filter: drop-shadow(0 16px 26px rgba(0,0,0,.35));
     animation: flutuar 4s ease-in-out infinite;
   }
   @keyframes flutuar {
@@ -163,137 +164,185 @@
     .hero-banner { animation: none; }
   }
 
-  /* ---------- Problema ---------- */
-  .problema { background: var(--branco); }
-  .problema p { max-width: 680px; margin: 0 auto 14px; font-size: 1.1rem; text-align: center; }
-
-  /* ---------- Benefícios ---------- */
-  .lista-beneficios { max-width: 720px; margin: 0 auto; display: grid; gap: 14px; }
-  .lista-beneficios li {
-    background: var(--branco);
-    border-radius: 16px;
-    padding: 16px 18px;
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    font-weight: 600;
-    box-shadow: 0 3px 10px rgba(20,53,110,.08);
-  }
-  .lista-beneficios .icone {
-    flex: 0 0 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    font-size: 1.5rem;
-    background: var(--creme);
-    border-radius: 12px;
-  }
-
-  /* ---------- Demonstração ---------- */
-  .demo { background: var(--branco); }
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    max-width: 860px;
+  /* ---------- Benefícios (cards) ---------- */
+  .beneficios { background: var(--creme); }
+  .intro-secao { text-align: center; max-width: 680px; margin: 0 auto 26px; font-weight: 600; }
+  .cards-beneficios {
+    max-width: 920px;
     margin: 0 auto;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
   }
-  @media (min-width: 700px) { .galeria { grid-template-columns: repeat(3, 1fr); } }
-  .galeria figure {
-    background: var(--creme);
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(20,53,110,.12);
-    border: 3px solid var(--amarelo);
-  }
-  .galeria figcaption {
-    padding: 10px 12px;
-    font-weight: 700;
-    font-size: .95rem;
-    text-align: center;
-    color: var(--azul);
-  }
-
-  /* ---------- Tabela de versões ---------- */
-  .tabela-wrap { overflow-x: auto; }
-  table.versoes {
-    border-collapse: collapse;
-    width: 100%;
-    min-width: 480px;
-    background: var(--branco);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 14px rgba(20,53,110,.1);
-  }
-  table.versoes th, table.versoes td {
-    padding: 13px 16px;
-    text-align: center;
-    border-bottom: 1px solid #EFE7D8;
-    font-size: .98rem;
-  }
-  table.versoes th { background: var(--azul); color: var(--branco); font-weight: 800; }
-  table.versoes th:first-child, table.versoes td:first-child { text-align: left; font-weight: 600; }
-  table.versoes .sim { color: var(--verde); font-weight: 800; font-size: 1.2rem; }
-  table.versoes .nao { color: #B9B0A0; font-size: 1.2rem; }
-  .nota-bump {
-    text-align: center;
-    margin-top: 16px;
-    font-weight: 600;
-    background: #FFF8E1;
-    border: 2px dashed var(--amarelo);
-    border-radius: 14px;
-    padding: 14px 18px;
-  }
-
-  /* ---------- Para quem é ---------- */
-  .para-quem { background: var(--branco); }
-  .colunas-2 { display: grid; gap: 18px; max-width: 860px; margin: 0 auto; }
-  @media (min-width: 700px) { .colunas-2 { grid-template-columns: 1fr 1fr; } }
-  .card-quem { border-radius: 18px; padding: 22px; box-shadow: 0 4px 12px rgba(20,53,110,.08); }
-  .card-quem.sim { background: #E8F5E9; border: 3px solid var(--verde); }
-  .card-quem.nao { background: #FBEAEA; border: 3px solid var(--rosa); }
-  .card-quem h3 { margin-bottom: 10px; font-size: 1.15rem; }
-  .card-quem li { padding: 5px 0; font-weight: 600; }
-
-  /* ---------- Casos de uso ---------- */
-  .cards-3 { display: grid; gap: 16px; max-width: 900px; margin: 0 auto; }
-  @media (min-width: 700px) { .cards-3 { grid-template-columns: repeat(3, 1fr); } }
-  .card-caso {
+  @media (min-width: 620px) { .cards-beneficios { grid-template-columns: 1fr 1fr; } }
+  .card-beneficio {
     background: var(--branco);
     border-radius: 18px;
-    padding: 24px 20px;
+    padding: 26px 22px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(20,53,110,.08);
     border-top: 6px solid var(--amarelo);
   }
-  .card-caso .icone { font-size: 2.2rem; margin-bottom: 10px; }
-  .card-caso h3 { font-size: 1.08rem; color: var(--azul); margin-bottom: 6px; }
-
-  /* ---------- Provas ---------- */
-  .provas { background: var(--branco); }
-  .depoimentos { display: grid; gap: 16px; max-width: 860px; margin: 0 auto; }
-  @media (min-width: 700px) { .depoimentos { grid-template-columns: 1fr 1fr; } }
-  .depoimento {
-    background: var(--creme);
-    border-radius: 18px;
-    padding: 22px;
-    box-shadow: 0 4px 12px rgba(20,53,110,.08);
-    font-style: italic;
+  .card-beneficio .icone {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 12px;
+    font-size: 1.8rem;
+    background: var(--azul-claro);
+    border-radius: 16px;
   }
-  .depoimento .autor { margin-top: 12px; font-weight: 800; font-style: normal; color: var(--azul); }
+  .card-beneficio p { font-weight: 600; }
+
+  /* ---------- Faixa infinita (por dentro do material) ---------- */
+  .demo { background: var(--branco); }
+  .faixa {
+    overflow: hidden;
+    margin-top: 34px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  }
+  .faixa-trilho {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    padding: 4px 0 10px;
+    animation: faixa-rolar 60s linear infinite;
+  }
+  .faixa:hover .faixa-trilho { animation-play-state: paused; }
+  .faixa-item {
+    flex: 0 0 clamp(170px, 22vw, 280px);
+    background: var(--branco);
+    border: 2px solid #E4EDFB;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(20,53,110,.14);
+  }
+  .faixa-item img { display: block; width: 100%; }
+  .faixa-legenda {
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: .85rem;
+    text-align: center;
+    color: var(--azul-escuro);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @keyframes faixa-rolar { to { transform: translateX(-50%); } }
+  /* Telas largas: cada metade do trilho precisa cobrir a viewport inteira,
+     senão aparece um vão antes de o loop reiniciar. */
+  @media (min-width: 2200px) {
+    .faixa-item { flex-basis: clamp(300px, 14vw, 640px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faixa { overflow-x: auto; }
+    .faixa-trilho { animation: none; }
+  }
+
+  /* ---------- O que você vai receber ---------- */
+  .receber { background: var(--branco); }
+  .receber-linha { display: grid; gap: 26px; max-width: 960px; margin: 0 auto; align-items: center; }
+  @media (min-width: 760px) { .receber-linha { grid-template-columns: 1fr 1fr; } }
+  .receber-figura img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 12px 20px rgba(20,53,110,.18));
+  }
+  .receber-lista li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--creme);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .receber-lista li:last-child { margin-bottom: 0; }
+  .receber-lista .marca { flex: 0 0 auto; }
+
+  /* ---------- Bônus ---------- */
+  .bonus { background: var(--creme); }
+  .cards-bonus { display: grid; gap: 16px; max-width: 920px; margin: 0 auto; }
+  @media (min-width: 620px) { .cards-bonus { grid-template-columns: 1fr 1fr; } }
+  .card-bonus {
+    background: var(--branco);
+    border-radius: 18px;
+    padding: 24px 22px;
+    box-shadow: 0 4px 12px rgba(20,53,110,.08);
+    border-top: 6px solid var(--amarelo);
+  }
+  .badge-bonus {
+    display: inline-block;
+    background: var(--amarelo);
+    color: var(--azul-escuro);
+    font-weight: 800;
+    font-size: .78rem;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+  }
+  .card-bonus h3 { font-size: 1.08rem; color: var(--azul); margin-bottom: 6px; }
+  .card-bonus p { font-weight: 600; }
+  /* Mockup do bônus: fundo branco liso do arquivo se funde com o card branco */
+  .card-bonus img { display: block; width: 100%; height: auto; margin: 0 0 16px; }
+
+  /* ---------- Depoimentos (feed de posts) ---------- */
+  .provas { background: var(--azul-claro); }
+  .feed { display: grid; gap: 20px; max-width: 860px; margin: 0 auto; }
+  @media (min-width: 700px) { .feed { grid-template-columns: 1fr 1fr; } }
+  .post {
+    background: var(--branco);
+    border: 1px solid #E1E4E8;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(20,53,110,.08);
+  }
+  .post-topo { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+  .post-avatar {
+    flex: 0 0 38px;
+    height: 38px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--amarelo), var(--rosa));
+    color: var(--branco);
+    font-weight: 800;
+    font-size: .85rem;
+  }
+  .post-avatar img, .post-avatar svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .post-usuario {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    font-weight: 700;
+    font-size: .92rem;
+    color: #262626;
+  }
+  .post-usuario small { font-weight: 500; font-size: .78rem; color: #8E8E8E; }
+  .post-menu { margin-left: auto; color: #8E8E8E; font-weight: 800; letter-spacing: 2px; }
+  .post-acoes { padding: 10px 12px 2px; font-size: 1.25rem; letter-spacing: 8px; }
+  .post-corpo { padding: 6px 12px 14px; }
+  .post-legenda { font-size: .95rem; line-height: 1.55; color: #262626; }
+  .post-legenda strong { color: var(--azul); }
 
   /* ---------- Oferta ---------- */
-  .oferta { background: linear-gradient(170deg, var(--azul) 0%, #0A63F0 100%); color: var(--branco); }
-  .oferta h2 { color: var(--branco); }
-  .planos { display: grid; gap: 20px; max-width: 880px; margin: 0 auto; }
+  .oferta { background: linear-gradient(170deg, var(--azul-escuro) 0%, var(--azul-fundo) 100%); color: var(--branco); }
+  .planos { display: grid; gap: 20px; max-width: 900px; margin: 0 auto; }
   @media (min-width: 760px) { .planos { grid-template-columns: 1fr 1fr; align-items: stretch; } }
   .plano {
     background: var(--branco);
     color: var(--azul-escuro);
     border-radius: 22px;
-    padding: 30px 26px;
+    padding: 32px 28px;
     text-align: center;
-    box-shadow: 0 12px 28px rgba(0,0,0,.25);
+    box-shadow: 0 14px 30px rgba(0,0,0,.3);
     display: flex;
     flex-direction: column;
   }
@@ -312,39 +361,84 @@
     box-shadow: 0 3px 8px rgba(0,0,0,.2);
   }
   .plano h3 { color: var(--azul); font-size: 1.3rem; margin-bottom: 6px; }
-  .plano .preco { font-size: 2.4rem; font-weight: 800; color: var(--azul); line-height: 1.1; }
+  .plano .preco { font-size: 2.6rem; font-weight: 800; color: var(--azul-escuro); line-height: 1.1; }
   .plano .preco small { font-size: 1rem; font-weight: 600; color: #7A8CA8; }
   .plano .conteudo { margin: 16px 0 22px; text-align: left; }
-  .plano .conteudo li { padding: 5px 0; font-weight: 600; }
-  .plano .conteudo li::before { content: "✅ "; }
+  .plano .conteudo li { padding: 6px 0 6px 30px; font-weight: 600; position: relative; }
+  .plano .conteudo li.bonus-destaque {
+    background: rgba(255,193,7,.14);
+    border: 2px solid var(--amarelo);
+    border-radius: 12px;
+    color: var(--amarelo);
+    font-weight: 800;
+    margin-top: 8px;
+    padding: 10px 12px 10px 38px;
+  }
+  .plano .conteudo li.bonus-destaque::before { top: 13px; left: 10px; }
+  .plano .conteudo li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 5px;
+    width: 20px; height: 20px;
+    background: var(--verde);
+    color: var(--branco);
+    border-radius: 50%;
+    font-size: .75rem;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+  }
   .plano .btn { margin-top: auto; }
+  .nota-pagamento { text-align: center; margin-top: 24px; font-weight: 700; }
 
   /* ---------- Garantia ---------- */
   .garantia-card {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     background: var(--branco);
     border-radius: 20px;
-    padding: 30px 26px;
-    text-align: center;
+    padding: 32px 28px;
+    display: grid;
+    gap: 22px;
+    align-items: center;
     box-shadow: 0 4px 14px rgba(20,53,110,.1);
     border: 3px solid var(--verde);
+    text-align: left;
   }
-  .garantia-card .icone { font-size: 3rem; margin-bottom: 10px; }
+  @media (min-width: 640px) { .garantia-card { grid-template-columns: auto 1fr; } }
+  .garantia-card .selo-7dias {
+    justify-self: center;
+    flex: 0 0 120px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--verde);
+    color: var(--branco);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    line-height: 1.05;
+    box-shadow: 0 0 0 6px #E8F5E9;
+  }
+  .garantia-card .selo-7dias .num { font-size: 2.4rem; font-weight: 800; }
+  .garantia-card .selo-7dias .rotulo { font-size: .85rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+  .garantia-card h2 { text-align: left; margin-bottom: 10px; font-size: 1.5rem; }
+  .garantia-card p { font-weight: 600; }
+  .garantia-card .condicoes { margin-top: 10px; font-size: .95rem; color: #5A6B85; font-weight: 400; }
 
   /* ---------- FAQ ---------- */
-  .faq { background: var(--branco); }
+  .faq { background: var(--creme); }
   .faq details {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto 12px;
-    background: var(--creme);
+    background: var(--branco);
     border-radius: 14px;
     padding: 16px 18px;
     box-shadow: 0 2px 8px rgba(20,53,110,.06);
   }
   .faq summary {
     font-weight: 800;
-    color: var(--azul);
+    color: var(--azul-escuro);
     cursor: pointer;
     font-size: 1.02rem;
     list-style: none;
@@ -353,30 +447,9 @@
     align-items: center;
     gap: 12px;
   }
-  .faq summary::after { content: "＋"; font-size: 1.3rem; color: var(--amarelo); flex: 0 0 auto; }
+  .faq summary::after { content: "＋"; font-size: 1.3rem; color: var(--azul); flex: 0 0 auto; }
   .faq details[open] summary::after { content: "－"; }
   .faq details p { margin-top: 10px; font-weight: 600; }
-
-  /* ---------- CTA final ---------- */
-  .cta-final {
-    background: linear-gradient(160deg, var(--amarelo) 0%, var(--amarelo-forte) 100%);
-    text-align: center;
-  }
-  .cta-final h2 { color: var(--azul-escuro); }
-  .cta-final .btn { background: var(--azul); box-shadow: 0 6px 0 #0A3FA0; }
-  .cta-final .btn:hover, .cta-final .btn:focus-visible { box-shadow: 0 4px 0 #0A3FA0; }
-
-  /* ---------- Rodapé ---------- */
-  footer {
-    background: var(--azul-escuro);
-    color: #C9D6EE;
-    padding: 34px 0 40px;
-    text-align: center;
-    font-size: .92rem;
-  }
-  footer .logo-rodape { display: block; width: 64px; height: 64px; margin: 0 auto 12px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,.6); }
-  footer a { color: #9FC0FF; }
-  footer p { margin-bottom: 8px; }
 
   /* ---------- Ajustes de acesso ---------- */
   @media (prefers-reduced-motion: reduce) {
@@ -387,169 +460,249 @@
 </head>
 <body>
 
-<!-- ============ 1. HERO ============ -->
-<header class="hero">
-  <div class="container">
-    <img class="logo-marca" src="imagens/logo.webp" alt="Clube dos Pequenos Discípulos" width="320" height="320" loading="eager">
-    <h1>Atividades cristãs prontas para suas crianças — em minutos</h1>
-    <p class="sub">Atividades cristãs prontas para as suas crianças, com envio imediato após a compra. Versão básica a partir de R$&nbsp;9,90.</p>
-    <p class="selo-preco">A partir de R$ 9,90 · Envio imediato</p>
-    <p><a class="btn btn-amarelo" href="#oferta">Quero o material agora</a></p>
+<!-- ============ BARRA DO TOPO (data de hoje via JS) ============ -->
+<div class="barra-oferta">⚠ Oferta válida até <strong id="data-oferta">hoje</strong></div>
 
-    <img class="hero-banner" src="imagens/banner.webp" alt="Clube dos Pequenos Discípulos — atividades cristãs para crianças de 4 a 8 anos" width="1280" height="853" loading="eager">
+<!-- ============ 1. HERO ============ -->
+<header class="hero secao-escura">
+  <div class="container">
+    <h1>100 <span class="grifo">Atividades cristãs</span> para crianças</h1>
+    <p class="sub">Atividades cristãs prontas para as suas crianças, com envio imediato após a compra. Versão básica a partir de R$&nbsp;9,90.</p>
+    <img class="hero-banner" src="imagens/mockup.webp" alt="Mockup do Clube dos Pequenos Discípulos: capa e páginas internas das atividades cristãs" width="1280" height="853" loading="eager">
+    <p><a class="btn" href="#oferta">Quero o material agora</a></p>
   </div>
 </header>
 
-<!-- ============ 2. PROBLEMA ============ -->
-<section class="problema">
+<!-- ============ 2. POR DENTRO (FAIXA INFINITA) ============ -->
+<section class="demo">
   <div class="container">
-    <h2>Quer incluir a fé na rotina, mas falta tempo</h2>
-    <p>Você quer incluir a fé na rotina da sua família. Só que entre a correria do dia e a falta de repertório, as atividades acabam nunca saindo do papel.</p>
-    <p>Criar material do zero consome tempo que você não tem — e nem sempre sai como você imaginava.</p>
+    <h2><span class="grifo">Veja por dentro</span> do material</h2>
   </div>
-</section>
-
-<!-- ============ 3. BENEFÍCIO ============ -->
-<section>
-  <div class="container">
-    <h2>Com o material pronto, é só escolher e aproveitar</h2>
-    <p style="text-align:center;max-width:680px;margin:0 auto 26px;font-weight:600;">Com o material pronto, você escolhe a atividade, imprime (ou abre no tablet) e aproveita o momento com seus filhos.</p>
-    <ul class="lista-beneficios">
-      <li><span class="icone">🎨</span> Atividades variadas: caça-palavras, labirintos, ligar as figuras, colorir e os 10 Mandamentos</li>
-      <li><span class="icone">📖</span> Temas cristãos organizados e fáceis de encontrar</li>
-      <li><span class="icone">⏱️</span> Sem precisar pesquisar ou montar atividades</li>
-      <li><span class="icone">👨‍👩‍👧‍👦</span> Para o dia a dia, fim de semana ou momentos em família</li>
+  <div class="faixa">
+    <ul class="faixa-trilho">
+      <li class="faixa-item">
+        <img src="imagens/pag-capa.webp" alt="Capa do material: Clube dos Pequenos Discípulos" width="420" height="594" loading="lazy">
+        <p class="faixa-legenda">Capa do material</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-colorir.webp" alt="Atividade para colorir: Jesus abraçando as crianças" width="420" height="594" loading="lazy">
+        <p class="faixa-legenda">Colorir: Jesus e as Crianças</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-mandamentos.webp" alt="Página dos 10 Mandamentos em linguagem infantil" width="420" height="594" loading="lazy">
+        <p class="faixa-legenda">Os 10 Mandamentos</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-ligar.webp" alt="Atividade de ligar as figuras aos seus pares" width="420" height="594" loading="lazy">
+        <p class="faixa-legenda">Ligue as figuras</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-capa.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Capa do material</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-colorir.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Colorir: Jesus e as Crianças</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-mandamentos.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Os 10 Mandamentos</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-ligar.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Ligue as figuras</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-capa.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Capa do material</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-colorir.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Colorir: Jesus e as Crianças</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-mandamentos.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Os 10 Mandamentos</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-ligar.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Ligue as figuras</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-capa.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Capa do material</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-colorir.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Colorir: Jesus e as Crianças</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-mandamentos.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Os 10 Mandamentos</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-ligar.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Ligue as figuras</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-capa.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Capa do material</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-colorir.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Colorir: Jesus e as Crianças</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-mandamentos.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Os 10 Mandamentos</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-ligar.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Ligue as figuras</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-capa.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Capa do material</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-colorir.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Colorir: Jesus e as Crianças</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-mandamentos.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Os 10 Mandamentos</p>
+      </li>
+      <li class="faixa-item">
+        <img src="imagens/pag-ligar.webp" alt="" width="420" height="594" loading="lazy" aria-hidden="true">
+        <p class="faixa-legenda" aria-hidden="true">Ligue as figuras</p>
+      </li>
     </ul>
   </div>
 </section>
 
-<!-- ============ 4. DEMONSTRAÇÃO ============ -->
-<section class="demo">
+<!-- ============ 3. BENEFÍCIOS ============ -->
+<section class="beneficios">
   <div class="container">
-    <h2>Veja por dentro do material</h2>
-    <div class="galeria">
-      <figure>
-        <img src="imagens/pag-colorir.webp" alt="Atividade para colorir: Jesus abraçando as crianças" width="420" height="594" loading="lazy">
-        <figcaption>Colorir: Jesus e as Crianças</figcaption>
-      </figure>
-      <figure>
-        <img src="imagens/pag-mandamentos.webp" alt="Página dos 10 Mandamentos em linguagem infantil" width="420" height="594" loading="lazy">
-        <figcaption>Os 10 Mandamentos</figcaption>
-      </figure>
-      <figure>
-        <img src="imagens/pag-ligar.webp" alt="Atividade de ligar as figuras aos seus pares" width="420" height="594" loading="lazy">
-        <figcaption>Ligue as figuras</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 5. VERSÕES ============ -->
-<section>
-  <div class="container">
-    <h2>O que vem em cada versão</h2>
-    <div class="tabela-wrap">
-      <table class="versoes">
-        <thead>
-          <tr><th>Atividades</th><th>Básica — R$ 9,90</th><th>Completa — R$ 19,90</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Colorir: Jesus, Arca de Noé, Bom Pastor</td><td class="sim">✅</td><td class="sim">✅</td></tr>
-          <tr><td>Caça-palavras (palavras da fé)</td><td class="sim">✅</td><td class="sim">✅</td></tr>
-          <tr><td>Ligue as figuras</td><td class="sim">✅</td><td class="sim">✅</td></tr>
-          <tr><td>Os 10 Mandamentos em linguagem infantil</td><td class="sim">✅</td><td class="sim">✅</td></tr>
-          <tr><td>Complete a frase</td><td class="sim">✅</td><td class="sim">✅</td></tr>
-          <tr><td>Colorir extra (Sol e Estrelas)</td><td class="nao">—</td><td class="sim">✅</td></tr>
-          <tr><td>Caça-palavras 2 (histórias da Bíblia)</td><td class="nao">—</td><td class="sim">✅</td></tr>
-          <tr><td>Labirintos (menino e a igreja · cordeiro e o pastor)</td><td class="nao">—</td><td class="sim">✅</td></tr>
-          <tr><td>Ligue as figuras 2</td><td class="nao">—</td><td class="sim">✅</td></tr>
-          <tr><td>Envio imediato</td><td class="sim">✅</td><td class="sim">✅</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="nota-bump">Extras no checkout: bônus Kit Colorir Fé, mais páginas para colorir por apenas R$ 6,90 — adicionais em qualquer versão.</p>
-  </div>
-</section>
-
-<!-- ============ 6. PARA QUEM É ============ -->
-<section class="para-quem">
-  <div class="container">
-    <h2>Este material é para você?</h2>
-    <div class="colunas-2">
-      <div class="card-quem sim">
-        <h3>✅ É para você se...</h3>
-        <ul>
-          <li>quer ensinar a fé em casa na prática</li>
-          <li>prefere material pronto, sem preparo</li>
-          <li>busca algo acessível para o dia a dia</li>
-        </ul>
+    <h2>Com o <span class="grifo">material pronto</span>, é só escolher e aproveitar</h2>
+    <p class="intro-secao">Com o material pronto, você escolhe a atividade, imprime (ou abre no tablet) e aproveita o momento com seus filhos.</p>
+    <div class="cards-beneficios">
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">🎨</span>
+        <p>Atividades variadas: caça-palavras, labirintos, ligar as figuras, colorir e os 10 Mandamentos</p>
       </div>
-      <div class="card-quem nao">
-        <h3>❌ Não é para você se...</h3>
-        <ul>
-          <li>procura um curso completo de teologia</li>
-          <li>espera resultado sem usar o material</li>
-        </ul>
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">📖</span>
+        <p>Temas cristãos organizados e fáceis de encontrar</p>
+      </div>
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">⏱️</span>
+        <p>Sem precisar pesquisar ou montar atividades</p>
+      </div>
+      <div class="card-beneficio">
+        <span class="icone" aria-hidden="true">👨‍👩‍👧‍👦</span>
+        <p>Para o dia a dia, fim de semana ou momentos em família</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 7. CASOS DE USO ============ -->
-<section>
-  <div class="container">
-    <h2>Como as famílias usam o material</h2>
-    <div class="cards-3">
-      <div class="card-caso">
-        <div class="icone">🌙</div>
-        <h3>Na rotina</h3>
-        <p>10–15 minutos antes de dormir.</p>
-      </div>
-      <div class="card-caso">
-        <div class="icone">☀️</div>
-        <h3>No fim de semana</h3>
-        <p>Atividade em família na mesa.</p>
-      </div>
-      <div class="card-caso">
-        <div class="icone">🏠</div>
-        <h3>Na escola em casa</h3>
-        <p>Material complementar para imprimir.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 8. PROVAS ============ -->
+<!-- ============ 4. DEPOIMENTOS (FEED) ============ -->
 <section class="provas">
   <div class="container">
-    <h2>Quem já usou recomenda</h2>
-    <div class="depoimentos">
-      <blockquote class="depoimento">
-        "Meu filho de 6 anos amou as atividades de colorir. A gente usa quase toda noite antes de dormir — virou nosso momento de fé em família."
-        <span class="autor">— Camila R., mãe de 2 crianças</span>
-      </blockquote>
-      <blockquote class="depoimento">
-        "Comprei a versão completa e não me arrependo. Os labirintos e o caça-palavras ocuparam meu filho o fim de semana inteiro, e ele ainda aprendeu os 10 Mandamentos."
-        <span class="autor">— Marcos A., pai</span>
-      </blockquote>
+    <h2>Quem já usou <span class="grifo">recomenda</span></h2>
+    <div class="feed">
+      <article class="post">
+        <header class="post-topo">
+          <span class="post-avatar" aria-hidden="true"><img src="imagens/depoimento-camila.webp" alt="" width="256" height="256" loading="lazy"></span>
+          <span class="post-usuario">Camila R. <small>mãe de 2 crianças</small></span>
+          <span class="post-menu" aria-hidden="true">•••</span>
+        </header>
+        <div class="post-acoes" aria-hidden="true">🤍 💬 ➤</div>
+        <div class="post-corpo">
+          <p class="post-legenda"><strong>Camila R.</strong> "Meu filho de 6 anos amou as atividades de colorir. A gente usa quase toda noite antes de dormir, virou nosso momento de fé em família."</p>
+        </div>
+      </article>
+      <article class="post">
+        <header class="post-topo">
+          <span class="post-avatar" aria-hidden="true"><img src="imagens/depoimento-marcos.webp" alt="" width="256" height="256" loading="lazy"></span>
+          <span class="post-usuario">Marcos A. <small>pai</small></span>
+          <span class="post-menu" aria-hidden="true">•••</span>
+        </header>
+        <div class="post-acoes" aria-hidden="true">🤍 💬 ➤</div>
+        <div class="post-corpo">
+          <p class="post-legenda"><strong>Marcos A.</strong> "Comprei a versão completa e não me arrependo. Os labirintos e o caça-palavras ocuparam meu filho o fim de semana inteiro, e ele ainda aprendeu os 10 Mandamentos."</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ============ 9. OFERTA ============ -->
-<section class="oferta" id="oferta">
+<!-- ============ 5. O QUE VOCÊ VAI RECEBER ============ -->
+<section class="receber">
   <div class="container">
-    <h2>Escolha sua versão</h2>
+    <h2>O que vem <span class="grifo">no material</span></h2>
+    <div class="receber-linha">
+      <div class="receber-figura">
+        <img src="imagens/mockup.webp" alt="Mockup do material Clube dos Pequenos Discípulos" width="1280" height="853" loading="lazy">
+      </div>
+      <ul class="receber-lista">
+        <li><span class="marca" aria-hidden="true">✅</span> Colorir: Jesus, Arca de Noé, Bom Pastor</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Caça-palavras da fé</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Ligue as figuras</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Os 10 Mandamentos</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Complete a frase</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Colorir extra: Sol e Estrelas</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Caça-palavras 2: histórias da Bíblia</li>
+        <li><span class="marca" aria-hidden="true">✅</span> 2 labirintos divertidos</li>
+        <li><span class="marca" aria-hidden="true">✅</span> Ligue as figuras 2</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. BÔNUS ============ -->
+<section class="bonus">
+  <div class="container">
+    <h2>A Completa ainda <span class="grifo">leva 4 bônus</span></h2>
+    <div class="cards-bonus">
+      <div class="card-bonus">
+        <img src="imagens/bonus-cartoes.webp" alt="Mockup do bônus Cartões dos 10 Mandamentos: capa e cartões numerados com a frase de cada mandamento, prontos para imprimir e recortar" width="816" height="544" loading="lazy">
+        <span class="badge-bonus">Bônus 1</span>
+        <h3>Cartões dos 10 Mandamentos</h3>
+        <p>Imprima, recorte e pendure um mandamento por dia na casa.</p>
+      </div>
+      <div class="card-bonus">
+        <img src="imagens/bonus-oracoes.webp" alt="Mockup do bônus Orações Infantis: capa e página da oração ao acordar, com ilustração e o texto da oração" width="816" height="544" loading="lazy">
+        <span class="badge-bonus">Bônus 2</span>
+        <h3>Orações Infantis</h3>
+        <p>Orações curtas para acordar, comer, dormir e ter coragem.</p>
+      </div>
+      <div class="card-bonus">
+        <img src="imagens/bonus-historias.webp" alt="Mockup do bônus Histórias da Bíblia para Contar: capa e página da história Jesus e as crianças, com ilustração colorida e o texto para ler em voz alta" width="816" height="544" loading="lazy">
+        <span class="badge-bonus">Bônus 3</span>
+        <h3>Histórias da Bíblia para Contar</h3>
+        <p>As histórias das atividades, prontas para ler em voz alta.</p>
+      </div>
+      <div class="card-bonus">
+        <img src="imagens/bonus-medalhas.webp" alt="Mockup do bônus Medalhas e Certificados: capa, página com quatro medalhas para recortar e o certificado de Pequeno Discípulo Concluinte" width="816" height="544" loading="lazy">
+        <span class="badge-bonus">Bônus 4</span>
+        <h3>Medalhas e Certificados</h3>
+        <p>Recompensas para imprimir quando a atividade termina.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. OFERTA ============ -->
+<section class="oferta secao-escura" id="oferta">
+  <div class="container">
+    <h2>Escolha <span class="grifo">sua versão</span></h2>
     <div class="planos">
       <div class="plano">
         <h3>Versão Básica</h3>
         <p class="preco">R$ 9,90<br><small>pagamento único</small></p>
         <ul class="conteudo">
-          <li>Colorir: Jesus, Arca de Noé, Bom Pastor</li>
-          <li>Caça-palavras da fé</li>
-          <li>Ligue as figuras</li>
-          <li>Os 10 Mandamentos</li>
-          <li>Complete a frase</li>
+          <li>30 páginas de atividades</li>
           <li>Envio imediato</li>
         </ul>
         <a class="btn btn-bloco" href="[CONFIRMAR: URL_CHECKOUT_BASICA]">Quero a básica</a>
@@ -559,43 +712,44 @@
         <h3>Versão Completa</h3>
         <p class="preco">R$ 19,90<br><small>por apenas R$ 10 a mais</small></p>
         <ul class="conteudo">
-          <li>Tudo da básica</li>
-          <li>Colorir extra: Sol e Estrelas</li>
-          <li>Caça-palavras 2: histórias da Bíblia</li>
-          <li>2 labirintos divertidos</li>
-          <li>Ligue as figuras 2</li>
+          <li>60 páginas de atividades</li>
           <li>Envio imediato</li>
+          <li class="bonus-destaque">+ 4 bônus exclusivos: cartões, orações, histórias e medalhas</li>
         </ul>
         <a class="btn btn-bloco" href="[CONFIRMAR: URL_CHECKOUT_COMPLETA]">Quero a completa</a>
       </div>
     </div>
-    <p style="text-align:center;margin-top:24px;font-weight:700;">No checkout: bônus Kit Colorir Fé por R$ 6,90 (opcional) · Pagamento: cartão e Pix</p>
+    <p class="nota-pagamento">No checkout: bônus Kit Colorir Fé por R$ 6,90 (opcional) · Pagamento: cartão e Pix</p>
   </div>
 </section>
 
-<!-- ============ 10. GARANTIA ============ -->
+<!-- ============ 8. GARANTIA ============ -->
 <section>
   <div class="container">
     <div class="garantia-card">
-      <div class="icone">🛡️</div>
-      <h2 style="margin-bottom:12px;">Compra segura</h2>
-      <p style="font-weight:600;">Você tem 7 dias, a contar da compra, para solicitar o reembolso integral do valor pago, conforme as condições abaixo. Se por qualquer motivo não ficar satisfeito, basta enviar um e-mail para o suporte dentro desse prazo.</p>
-      <p style="margin-top:10px;font-size:.95rem;color:#5A6B85;">O reembolso é processado em até 10 dias úteis após a solicitação, conforme o Código de Defesa do Consumidor (Art. 49). O direito de arrependimento aplica-se à compra realizada neste site.</p>
+      <div class="selo-7dias" aria-hidden="true">
+        <div><span class="num">7</span><br><span class="rotulo">dias</span></div>
+      </div>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Você tem 7 dias, a contar da compra, para solicitar o reembolso integral do valor pago, conforme as condições abaixo. Se por qualquer motivo não ficar satisfeito, basta enviar um e-mail para o suporte dentro desse prazo.</p>
+        <p class="condicoes">O reembolso é processado em até 10 dias úteis após a solicitação, conforme o Código de Defesa do Consumidor (Art. 49). O direito de arrependimento aplica-se à compra realizada neste site.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 11. FAQ ============ -->
+<!-- ============ 9. FAQ ============ -->
 <section class="faq">
   <div class="container">
-    <h2>Perguntas frequentes</h2>
+    <h2>Perguntas <span class="grifo">frequentes</span></h2>
     <details>
       <summary>Como recebo o material?</summary>
       <p>Envio imediato por e-mail, logo após a confirmação da compra.</p>
     </details>
     <details>
       <summary>Preciso imprimir tudo?</summary>
-      <p>Não — você imprime só o que for usar, ou abre as atividades direto no tablet.</p>
+      <p>Não, você imprime só o que for usar, ou abre as atividades direto no tablet.</p>
     </details>
     <details>
       <summary>Que idade é indicada?</summary>
@@ -611,37 +765,29 @@
     </details>
     <details>
       <summary>É assinatura?</summary>
-      <p>Não — é pagamento único, sem mensalidade.</p>
+      <p>Não, é pagamento único, sem mensalidade.</p>
     </details>
   </div>
 </section>
 
-<!-- ============ 12. CTA FINAL ============ -->
-<section class="cta-final">
-  <div class="container">
-    <h2>Comece hoje com o material pronto</h2>
-    <p style="font-size:1.15rem;font-weight:700;margin-bottom:24px;">R$ 9,90 ou R$ 19,90, com envio imediato.</p>
-    <a class="btn" href="#oferta">Quero o material agora</a>
-  </div>
-</section>
-
-<!-- ============ 13. RODAPÉ LEGAL ============ -->
-<footer>
-  <div class="container">
-    <img class="logo-rodape" src="imagens/logo.webp" alt="Clube dos Pequenos Discípulos" width="320" height="320" loading="lazy">
-    <p><strong>Clube dos Pequenos Discípulos</strong></p>
-    <p><a href="[CONFIRMAR: URL_TERMOS]">Termos de uso</a> · <a href="[CONFIRMAR: URL_PRIVACIDADE]">Política de privacidade</a></p>
-    <p>© 2026 Clube dos Pequenos Discípulos. Todos os direitos reservados.</p>
-  </div>
-</footer>
-
 <!-- ============ CTA FIXO (MOBILE) ============ -->
 <div class="cta-flutuante">
-  <a class="btn" href="#oferta">Quero o material agora — a partir de R$ 9,90</a>
+  <a class="btn" href="#oferta">Quero o material agora · a partir de R$ 9,90</a>
 </div>
 
+<!-- ============ DATA DA OFERTA (JS) ============
+     A barra do topo mostra sempre a data de hoje (dd/mm/aaaa). Sem o JS, o
+     texto "hoje" do HTML continua legível. -->
+<script>
+  (function () {
+    var alvo = document.getElementById('data-oferta');
+    if (!alvo) return;
+    alvo.textContent = new Date().toLocaleDateString('pt-BR');
+  })();
+</script>
+
 <!-- ============ META PIXEL ============ -->
-<!-- [CONFIRMAR: ID_PIXEL] — substituir o ID ou remover o bloco inteiro se ainda não houver pixel.
+<!-- [CONFIRMAR: ID_PIXEL]: substituir o ID ou remover o bloco inteiro se ainda não houver pixel.
      Eventos a configurar: PageView (automático), ViewContent, InitiateCheckout, Purchase. -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
