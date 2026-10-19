@@ -16,10 +16,12 @@
         - Fundo creme #FBF6EC · Texto azul-marinho #14356E
         - Estilo: 3D cartoon infantil vibrante, bordas arredondadas, sombras suaves
 
-     ANTES DE PUBLICAR: substituir todos os [CONFIRMAR]:
-        1. [CONFIRMAR: URL_CHECKOUT_*]  → URLs reais do checkout, com UTMs
-        2. [CONFIRMAR: ID_PIXEL]        → ID do Meta Pixel (ou remover bloco)
-        3. Depoimentos: TEXTOS FICTÍCIOS de teste: substituir por depoimentos
+     CONFIGURADO:
+        - URLs do checkout: aplicadas nos botões da oferta (básica e completa)
+        - Meta Pixel: ID 1185147161132755 inicializado no PageView
+
+     ANTES DE PUBLICAR: substituir todo [CONFIRMAR]:
+        1. Depoimentos: TEXTOS FICTÍCIOS de teste: substituir por depoimentos
            reais com autorização antes de publicar (seção de depoimentos)
 
      REGRAS RESPEITADAS:
@@ -696,7 +698,7 @@
           <li>100 páginas de atividades</li>
           <li>Envio imediato</li>
         </ul>
-        <a class="btn btn-bloco" href="[CONFIRMAR: URL_CHECKOUT_BASICA]">Quero a básica</a>
+        <a class="btn btn-bloco" href="https://ggcheckout.app/checkout/v5/Omrphi5umquBkcVDz08L4c">Quero a básica</a>
       </div>
       <div class="plano destaque">
         <span class="flutulante">Melhor valor</span>
@@ -707,7 +709,7 @@
           <li>Envio imediato</li>
           <li class="bonus-destaque">+ 5 bônus exclusivos: kit colorir, cartões, orações, histórias e medalhas</li>
         </ul>
-        <a class="btn btn-bloco" href="[CONFIRMAR: URL_CHECKOUT_COMPLETA]">Quero a completa</a>
+        <a class="btn btn-bloco" href="https://ggcheckout.app/checkout/v5/tTuJKrHbu60lFfnLbIaWjV">Quero a completa</a>
       </div>
     </div>
   </div>
@@ -772,7 +774,7 @@
 </script>
 
 <!-- ============ META PIXEL ============ -->
-<!-- [CONFIRMAR: ID_PIXEL]: substituir o ID ou remover o bloco inteiro se ainda não houver pixel.
+<!-- Pixel 1185147161132755.
      Eventos a configurar: PageView (automático), ViewContent, InitiateCheckout, Purchase. -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -780,10 +782,10 @@
   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
   document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '[CONFIRMAR: ID_PIXEL]');
+  fbq('init', '1185147161132755');
   fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=[CONFIRMAR: ID_PIXEL]&ev=PageView&noscript=1" alt=""></noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1185147161132755&ev=PageView&noscript=1" alt=""></noscript>
 
 </body>
 </html>
