@@ -18,7 +18,11 @@
 
      CONFIGURADO:
         - URLs do checkout: aplicadas nos botões da oferta (básica e completa)
-        - Meta Pixel: ID 1185147161132755 inicializado no PageView
+        - Meta Pixel: ID 1185147161132755 — base no <head> (PageView) e eventos
+          da página no fim do body (ViewContent na faixa de demonstração e
+          InitiateCheckout no clique dos CTAs, com versão e valor)
+        - UTMs e fbclid: repassados automaticamente da URL de destino para os
+          links de checkout (ver "EVENTOS DA PÁGINA")
 
      ANTES DE PUBLICAR: substituir todo [CONFIRMAR]:
         1. Depoimentos: TEXTOS FICTÍCIOS de teste: substituir por depoimentos
@@ -444,6 +448,22 @@
     .btn { transition: none; }
   }
 </style>
+
+<!-- ============ META PIXEL (base) ============
+     Pixel 1185147161132755. A base fica no <head> para o PageView sair o mais
+     cedo possível; ViewContent e InitiateCheckout saem do bloco
+     "EVENTOS DA PÁGINA", no fim do <body>. Purchase não sai daqui: é
+     reportado pelo checkout (ou por CAPI, com o mesmo event_id). -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1185147161132755');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1185147161132755&ev=PageView&noscript=1" alt=""></noscript>
 </head>
 <body>
 
@@ -698,7 +718,7 @@
           <li>100 páginas de atividades</li>
           <li>Envio imediato</li>
         </ul>
-        <a class="btn btn-bloco" href="https://ggcheckout.app/checkout/v5/Omrphi5umquBkcVDz08L4c">Quero a básica</a>
+        <a class="btn btn-bloco" href="https://ggcheckout.app/checkout/v5/Omrphi5umquBkcVDz08L4c" data-checkout="basica" data-checkout-nome="Versão Básica" data-checkout-valor="9.90">Quero a básica</a>
       </div>
       <div class="plano destaque">
         <span class="flutulante">Melhor valor</span>
@@ -709,7 +729,7 @@
           <li>Envio imediato</li>
           <li class="bonus-destaque">+ 5 bônus exclusivos: kit colorir, cartões, orações, histórias e medalhas</li>
         </ul>
-        <a class="btn btn-bloco" href="https://ggcheckout.app/checkout/v5/tTuJKrHbu60lFfnLbIaWjV">Quero a completa</a>
+        <a class="btn btn-bloco" href="https://ggcheckout.app/checkout/v5/tTuJKrHbu60lFfnLbIaWjV" data-checkout="completa" data-checkout-nome="Versão Completa" data-checkout-valor="19.90">Quero a completa</a>
       </div>
     </div>
   </div>
@@ -773,19 +793,50 @@
   })();
 </script>
 
-<!-- ============ META PIXEL ============ -->
-<!-- Pixel 1185147161132755.
-     Eventos a configurar: PageView (automático), ViewContent, InitiateCheckout, Purchase. -->
+<!-- ============ EVENTOS DA PÁGINA (ViewContent + InitiateCheckout) ============
+     ViewContent: dispara uma única vez quando a faixa de demonstração entra na
+     tela. InitiateCheckout: dispara no clique dos CTAs de checkout, com a
+     versão e o valor. Os links do checkout recebem de volta os utm_* e o
+     fbclid presentes na URL de destino, para o checkout atribuir a venda. -->
 <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1185147161132755');
-  fbq('track', 'PageView');
+  (function () {
+    var PARAMETROS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+    var chegada = new URLSearchParams(window.location.search);
+
+    document.querySelectorAll('a[data-checkout]').forEach(function (botao) {
+      var destino = new URL(botao.getAttribute('href'));
+      PARAMETROS.forEach(function (nome) {
+        var valor = chegada.get(nome);
+        if (valor) destino.searchParams.set(nome, valor);
+      });
+      botao.setAttribute('href', destino.toString());
+
+      botao.addEventListener('click', function () {
+        if (typeof fbq !== 'function') return;
+        fbq('track', 'InitiateCheckout', {
+          content_name: botao.getAttribute('data-checkout-nome'),
+          content_type: 'product',
+          currency: 'BRL',
+          value: parseFloat(botao.getAttribute('data-checkout-valor'))
+        });
+      });
+    });
+
+    var demo = document.querySelector('.demo');
+    if (!demo || typeof fbq !== 'function' || !('IntersectionObserver' in window)) return;
+    var enviado = false;
+    new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (enviado || !entrada.isIntersecting) return;
+        enviado = true;
+        fbq('track', 'ViewContent', {
+          content_name: 'Clube dos Pequenos Discípulos',
+          content_type: 'product'
+        });
+      });
+    }, { threshold: 0.5 }).observe(demo);
+  })();
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1185147161132755&ev=PageView&noscript=1" alt=""></noscript>
 
 </body>
 </html>
